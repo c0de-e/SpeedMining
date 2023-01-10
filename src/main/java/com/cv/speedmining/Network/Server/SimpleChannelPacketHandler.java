@@ -1,7 +1,7 @@
-package com.cv.speedmining.Server;
+package com.cv.speedmining.Network.Server;
 
 import com.cv.speedmining.SpeedMining;
-import com.cv.speedmining.Client.ClientPacketHandler;
+import com.cv.speedmining.Network.Client.ClientPacketHandler;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;

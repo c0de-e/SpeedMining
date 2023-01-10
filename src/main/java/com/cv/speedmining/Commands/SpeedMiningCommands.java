@@ -1,4 +1,4 @@
-package com.cv.speedmining.Server;
+package com.cv.speedmining.Commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;

@@ -1,8 +1,8 @@
-package com.cv.speedmining.Server;
+package com.cv.speedmining.Network.Server;
 
 import java.util.function.Supplier;
 
-import com.cv.speedmining.Client.ClientPacketHandler;
+import com.cv.speedmining.Network.Client.ClientPacketHandler;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;

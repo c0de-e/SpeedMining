@@ -1,4 +1,4 @@
-package com.cv.speedmining.Server;
+package com.cv.speedmining.Commands;
 
 import org.slf4j.Logger;
 

@@ -2,9 +2,9 @@ package com.cv.speedmining;
 
 import org.slf4j.Logger;
 
-import com.cv.speedmining.Server.BlockBreakSpeedHandler;
-import com.cv.speedmining.Server.SimpleChannelPacketHandler;
-import com.cv.speedmining.Server.SpeedMiningCommands;
+import com.cv.speedmining.Commands.BlockBreakSpeedHandler;
+import com.cv.speedmining.Commands.SpeedMiningCommands;
+import com.cv.speedmining.Network.Server.SimpleChannelPacketHandler;
 import com.mojang.logging.LogUtils;
 
 import net.minecraftforge.api.distmarker.Dist;

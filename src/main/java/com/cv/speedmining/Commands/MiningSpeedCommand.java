@@ -1,8 +1,10 @@
-package com.cv.speedmining.Server;
+package com.cv.speedmining.Commands;
 
 import org.slf4j.Logger;
 
 import com.cv.speedmining.SpeedMining;
+import com.cv.speedmining.Network.Server.ServerPacketHandler;
+import com.cv.speedmining.Network.Server.SimpleChannelPacketHandler;
 import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.logging.LogUtils;

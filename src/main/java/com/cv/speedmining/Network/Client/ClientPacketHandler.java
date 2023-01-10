@@ -1,11 +1,11 @@
-package com.cv.speedmining.Client;
+package com.cv.speedmining.Network.Client;
 
 import java.util.function.Supplier;
 
 import org.slf4j.Logger;
 
 import com.cv.speedmining.SpeedMining;
-import com.cv.speedmining.Server.ServerPacketHandler;
+import com.cv.speedmining.Network.Server.ServerPacketHandler;
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.network.FriendlyByteBuf;
