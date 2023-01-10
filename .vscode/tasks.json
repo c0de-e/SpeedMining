@@ -1,0 +1,55 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Client",
+			"type": "shell",
+			"command": "echo 'Starting Client'",
+			"group": "none",
+			"presentation": {
+				"echo": false,
+				"group": "split",
+				"reveal": "never",
+				"focus": false,
+				"close": true,
+				"panel": "dedicated",
+				"showReuseMessage": false,
+				"clear": true
+			}
+		},
+		{
+			"label": "Server",
+			"type": "shell",
+			"command": "echo 'Starting Server'",
+			"group": "none",
+			"presentation": {
+				"echo": false,
+				"group": "split",
+				"reveal": "never",
+				"close": true,
+				"focus": false,
+				"panel": "dedicated",
+				"showReuseMessage": false,
+				"clear": true
+			}
+		},
+		{
+			"type": "gradle",
+			"id": "d:\\MCMods\\SpeedMiningbuildSpeedMining",
+			"script": "build",
+			"description": "Assembles and tests this project.",
+			"group": "build",
+			"project": "SpeedMining",
+			"buildFile": "D:\\MCMods\\SpeedMining\\build.gradle",
+			"rootProject": "SpeedMining",
+			"projectFolder": "d:\\MCMods\\SpeedMining",
+			"workspaceFolder": "d:\\MCMods\\SpeedMining",
+			"args": "",
+			"javaDebug": false,
+			"problemMatcher": [
+				"$gradle"
+			],
+			"label": "gradle: build"
+		}
+	]
+}
