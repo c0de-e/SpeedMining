@@ -27,7 +27,6 @@ public class SimpleChannelPacketHandler {
 
     @SubscribeEvent
     public static void onCommonSetupEvent(FMLCommonSetupEvent event) {
-        System.out.println("Setting up instance!");
         INSTANCE = NetworkRegistry.newSimpleChannel(
                 new ResourceLocation(SpeedMining.MODID, "main"), () -> PROTOCOL_VERSION,
                 PROTOCOL_VERSION::equals,

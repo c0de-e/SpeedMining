@@ -33,7 +33,6 @@ public class ServerPacketHandler {
     }
 
     public static void handler(ServerPacketHandler msg, Supplier<NetworkEvent.Context> ctx) {
-        System.out.println("PACKET HANDLER");
         ctx.get().enqueueWork(() ->
         // Make sure it's only executed on the physical client
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientPacketHandler.handleServerPacket(msg, ctx)));
