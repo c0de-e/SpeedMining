@@ -9,6 +9,7 @@ import com.mojang.logging.LogUtils;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraftforge.network.PacketDistributor;
 
 public class MiningSpeedCommand {
     private static final Logger LOGGER = LogUtils.getLogger();
@@ -25,9 +26,9 @@ public class MiningSpeedCommand {
         SpeedMining.BlockBreakSpeedHandlerInstance.MineSpeed = speed;
         try {
             if (!level.isClientSide)
-                SimpleChannelPacketHandler.sendToClient(new ServerPacketHandler(speed), cs.getPlayer());
-            // SimpleChannelPacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(), new
-            // ServerPacketHandler(speed));
+                SimpleChannelPacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(), new ServerPacketHandler(speed));
+            // SimpleChannelPacketHandler.sendToClient(new ServerPacketHandler(speed),
+            // cs.getPlayer());
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
         }
