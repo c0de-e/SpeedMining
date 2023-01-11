@@ -2,20 +2,20 @@ package com.cv.speedmining;
 
 import org.slf4j.Logger;
 
-import com.cv.speedmining.Commands.BlockBreakSpeedHandler;
 import com.cv.speedmining.Commands.SpeedMiningCommands;
-import com.cv.speedmining.Network.Server.SimpleChannelPacketHandler;
+import com.cv.speedmining.Commands.Logging.LoggingHandler;
+import com.cv.speedmining.Commands.MiningSpeed.BlockBreakSpeedHandler;
+import com.cv.speedmining.Network.SimpleChannelPacketHandler;
+import com.cv.speedmining.Network.MiningSpeed.ServerPacketHandler;
 import com.mojang.logging.LogUtils;
 
-import net.minecraftforge.api.distmarker.Dist;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.server.command.ConfigCommand;
 
@@ -28,14 +28,13 @@ public class SpeedMining {
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public static BlockBreakSpeedHandler BlockBreakSpeedHandlerInstance;
+    public static LoggingHandler LoggingHandlerInstance;
 
     public SpeedMining() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        // Register the commonSetup method for modloading
-        modEventBus.addListener(this::commonSetup);
-
         BlockBreakSpeedHandlerInstance = new BlockBreakSpeedHandler(1.25f);
+        LoggingHandlerInstance = new LoggingHandler(false);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -44,16 +43,16 @@ public class SpeedMining {
         registerCommonEvents(modEventBus);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event) {
-    }
-
     public void registerCommonEvents(IEventBus eventBus) {
         eventBus.register(SimpleChannelPacketHandler.class);
     }
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
+    public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+        // if (event.getEntity().level.isClientSide())
+        // return;
+        SimpleChannelPacketHandler.sendToClient(new ServerPacketHandler(BlockBreakSpeedHandlerInstance.MineSpeed),
+                ((ServerPlayer) event.getEntity()));
     }
 
     @SubscribeEvent
@@ -61,15 +60,5 @@ public class SpeedMining {
         new SpeedMiningCommands(event.getDispatcher());
         ConfigCommand.register(event.getDispatcher());
         MinecraftForge.EVENT_BUS.register(event.getDispatcher());
-    }
-
-    // You can use EventBusSubscriber to automatically register all static methods
-    // in the class annotated with @SubscribeEvent
-    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents {
-        @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {
-            LOGGER.info(event.description());
-        }
     }
 }

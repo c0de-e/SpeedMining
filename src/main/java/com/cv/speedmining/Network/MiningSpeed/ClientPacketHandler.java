@@ -1,11 +1,11 @@
-package com.cv.speedmining.Network.Client;
+package com.cv.speedmining.Network.MiningSpeed;
 
 import java.util.function.Supplier;
 
 import org.slf4j.Logger;
 
 import com.cv.speedmining.SpeedMining;
-import com.cv.speedmining.Network.Server.ServerPacketHandler;
+import com.cv.speedmining.Commands.Logging.LoggingCommand;
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.network.FriendlyByteBuf;
@@ -26,6 +26,10 @@ public class ClientPacketHandler {
 
     public static void handleServerPacket(ServerPacketHandler msg, Supplier<Context> ctx) {
         SpeedMining.BlockBreakSpeedHandlerInstance.MineSpeed = msg.speed;
+
+        LOGGER.info(String.format("Changed %s's mining speed to %s",
+                ctx.get().getSender().getName().getString(),
+                msg.speed));
     }
 
     public static void handler(ClientPacketHandler msg, Supplier<NetworkEvent.Context> ctx) {

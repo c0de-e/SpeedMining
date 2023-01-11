@@ -1,8 +1,6 @@
-package com.cv.speedmining.Network.Server;
+package com.cv.speedmining.Network.MiningSpeed;
 
 import java.util.function.Supplier;
-
-import com.cv.speedmining.Network.Client.ClientPacketHandler;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
@@ -12,12 +10,8 @@ import net.minecraftforge.network.NetworkEvent;
 public class ServerPacketHandler {
     public float speed;
 
-    public ServerPacketHandler() {
-    }
-
     public ServerPacketHandler(float speed) {
         this.speed = speed;
-        System.out.println("Generating Handler :" + speed);
     }
 
     public ServerPacketHandler(FriendlyByteBuf buffer) {

@@ -1,7 +1,9 @@
-package com.cv.speedmining.Network.Server;
+package com.cv.speedmining.Network;
 
 import com.cv.speedmining.SpeedMining;
-import com.cv.speedmining.Network.Client.ClientPacketHandler;
+import com.cv.speedmining.Network.Logging.LoggingServerPacketHandler;
+import com.cv.speedmining.Network.MiningSpeed.ClientPacketHandler;
+import com.cv.speedmining.Network.MiningSpeed.ServerPacketHandler;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -42,6 +44,12 @@ public class SimpleChannelPacketHandler {
                 .decoder(ServerPacketHandler::decode)
                 .encoder(ServerPacketHandler::encode)
                 .consumerNetworkThread(ServerPacketHandler::handler)
+                .add();
+
+        INSTANCE.messageBuilder(LoggingServerPacketHandler.class, PACKET_ID++)
+                .decoder(LoggingServerPacketHandler::decode)
+                .encoder(LoggingServerPacketHandler::encode)
+                .consumerNetworkThread(LoggingServerPacketHandler::handler)
                 .add();
     }
 }

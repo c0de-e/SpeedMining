@@ -1,10 +1,10 @@
-package com.cv.speedmining.Commands;
+package com.cv.speedmining.Commands.MiningSpeed;
 
 import org.slf4j.Logger;
 
 import com.cv.speedmining.SpeedMining;
-import com.cv.speedmining.Network.Server.ServerPacketHandler;
-import com.cv.speedmining.Network.Server.SimpleChannelPacketHandler;
+import com.cv.speedmining.Network.SimpleChannelPacketHandler;
+import com.cv.speedmining.Network.MiningSpeed.ServerPacketHandler;
 import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.logging.LogUtils;
@@ -39,7 +39,7 @@ public class MiningSpeedCommand {
                 SpeedMining.BlockBreakSpeedHandlerInstance.MineSpeed));
 
         for (var player : level.players()) {
-            LogUtils.getLogger().debug(player.getName().getString() + " latency is " + player.latency);
+            LogUtils.getLogger().debug(player.getName().getString() + "\'s latency is " + player.latency);
         }
 
         return 1;
