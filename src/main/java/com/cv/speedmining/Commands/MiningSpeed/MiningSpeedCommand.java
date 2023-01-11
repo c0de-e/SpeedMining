@@ -17,7 +17,7 @@ public class MiningSpeedCommand {
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public static LiteralArgumentBuilder<CommandSourceStack> register() {
-        return Commands.literal("setSpeed")
+        return Commands.literal("setMiningSpeedMultiplier")
                 .requires(cs -> cs.hasPermission(Commands.LEVEL_ADMINS))
                 .then(Commands.argument("speed", FloatArgumentType.floatArg())
                         .executes(ctx -> setSpeed(ctx.getSource(), FloatArgumentType.getFloat(ctx, "speed"))));

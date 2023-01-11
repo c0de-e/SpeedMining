@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import org.slf4j.Logger;
 
 import com.cv.speedmining.SpeedMining;
-import com.cv.speedmining.Commands.Logging.LoggingCommand;
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.network.FriendlyByteBuf;
