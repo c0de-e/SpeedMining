@@ -17,6 +17,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.server.command.ConfigCommand;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -47,12 +48,17 @@ public class SpeedMining {
         eventBus.register(SimpleChannelPacketHandler.class);
     }
 
+    // @SubscribeEvent
+    // public void onPlayerTickUpdate(PlayerTickEvent event) {
+    //     double speedMult = 1.05;
+    //     event.player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(speedMult * 0.15);
+    // }
+
     @SubscribeEvent
     public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
-        // if (event.getEntity().level.isClientSide())
-        // return;
-        SimpleChannelPacketHandler.sendToClient(new ServerPacketHandler(BlockBreakSpeedHandlerInstance.MineSpeed),
-                ((ServerPlayer) event.getEntity()));
+        SimpleChannelPacketHandler.INSTANCE.sendTo(
+                new ServerPacketHandler(SpeedMining.BlockBreakSpeedHandlerInstance.MineSpeed),
+                ((ServerPlayer) event.getEntity()).connection.connection, NetworkDirection.PLAY_TO_CLIENT);
     }
 
     @SubscribeEvent
